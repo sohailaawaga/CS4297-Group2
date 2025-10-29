@@ -1,0 +1,67 @@
+apiVersion: apps/v1 
+
+kind: Deployment 
+
+metadata: 
+
+  name: microservice-deployment 
+
+  labels: 
+
+    app: microservice 
+
+spec: 
+
+  # Initial number of replicas 
+
+  replicas: 1 
+
+ 
+
+  # Selector identifies Pods managed by this Deployment 
+
+  selector: 
+
+    matchLabels: 
+
+      app: microservice 
+
+ 
+
+  # Template for creating Pods 
+
+  template: 
+
+    metadata: 
+
+      labels: 
+
+        app: microservice 
+
+    spec: 
+
+      containers: 
+
+      - name: microservice 
+
+        image: microservice:v1 
+
+        imagePullPolicy: Never  # Don't pull from Docker Hub 
+
+        ports: 
+
+        - containerPort: 8080 
+
+        resources: 
+
+          requests: 
+
+            memory: "128Mi" 
+
+            cpu: "100m" 
+
+          limits: 
+
+            memory: "256Mi" 
+
+            cpu: "500m" 
